@@ -17,6 +17,13 @@ the client certificate (and key, if necessary), and set the
 `CURL_HOME` environment variable to make sure that `curl` will load
 that `.curlrc`
 
+The `.curlrc` file is [viewable here](https://github.com/flavorjones/buildpack-packager-with-client-cert/blob/master/.curlrc). (Note that `-k` is set in this curl config because this proof-of-concept is using a self-signed server certificate.)
+
+The command being run is
+[viewable here](https://github.com/flavorjones/buildpack-packager-with-client-cert/blob/master/Rakefile#L43),
+with the only difference being that `CURL_HOME` is set to the current
+working directory.
+
 
 ## prerequisites
 
