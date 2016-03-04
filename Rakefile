@@ -22,22 +22,28 @@ end
 
 namespace :buildpack do
   BUILDPACK_NAME = "foo_buildpack-cached-v1.0.zip"
-  desc "Package a buildpack, pulling artifact from authenticated server."
-  task :package do
+
+  task :clean do
     FileUtils.rm_rf BUILDPACK_NAME
     cached_file = find_cached_artifact
     if cached_file
       puts "deleting cached file #{cached_file}"
       FileUtils.rm(*cached_file)
     end
+  end
 
+  task :assert_on_setup do
     system %Q{bundle exec buildpack-packager --cached --force-download > /dev/null 2>&1}
     raise "setup isn't right" if File.exist?(BUILDPACK_NAME)
+    puts "verified setup"
+  end
 
+  desc "Package a buildpack, pulling artifact from authenticated server."
+  task :package => [:clean, :assert_on_setup] do
     system %Q{CURL_HOME=$(pwd) bundle exec buildpack-packager --cached --force-download}
     raise "could not build the buildpack" unless File.exist?(BUILDPACK_NAME)
     puts "#"
-    puts "#  SUCCESS."
+    puts "#  SUCCESS. see #{BUILDPACK_NAME}"
     puts "#"
   end
 end

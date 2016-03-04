@@ -10,6 +10,14 @@ configuration. And finally, we'll create a dummy buildpack using
 `buildpack-packager` that downloads an artifact from our nginx server.
 
 
+## what's going on here
+
+We're demonstrating that you can create a `.curlrc` file specifying
+the client certificate (and key, if necessary), and set the
+`CURL_HOME` environment variable to make sure that `curl` will load
+that `.curlrc`
+
+
 ## prerequisites
 
 This proof-of-concept will require that you have the following
