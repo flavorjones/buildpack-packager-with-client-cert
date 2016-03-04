@@ -1,0 +1,30 @@
+---
+language: foo
+
+url_to_dependency_map:
+  - match: index.html
+    name: index.html
+    version: 1.0
+
+dependencies:
+  - name: index.html
+    version: 1.0
+    uri: https://localhost:4443/index.html
+    md5: 2963e499652205915fad3d5d209d6eda
+    cf_stacks:
+      - cflinuxfs2
+
+exclude_files:
+  - .git/
+  - .gitignore
+  - .gitmodules
+  - repos/
+  - spec/
+  - cf_spec/
+  - log/
+  - test/
+  - cf.Gemfile
+  - cf.Gemfile.lock
+  - bin/package
+  - buildpack-packager/
+  - cf_build/
